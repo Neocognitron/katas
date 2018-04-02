@@ -13,36 +13,37 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+import org.junit.Before;
 import org.junit.Test;
 
 import com.pillar.kata.WordSearchBuilder;
 
 public class WordsearchTest {
-
-	@Test
-	public void testBuildWordBankFromReader() throws IOException 
+	
+	WordSearchBuilder builder;
+	@Before
+	public void setup() throws IOException
 	{
-
-		List<String> expected = Arrays.asList("One", "Two", "Three");
+	
 		Path path = Paths.get("src/resources", "testTest");
         Reader reader = Files.newBufferedReader(
             path, Charset.forName("UTF-8"));
-		WordSearchBuilder builder = new WordSearchBuilder(reader);
-		
+		builder = new WordSearchBuilder(reader);
+	}
+
+	@Test
+	public void testBuildWordBankFromReader() 
+	{
+
+		List<String> expected = Arrays.asList("One", "Two", "Three");
 		List<String> wordBankBuildResult = builder.getWordBank();
 		assertEquals(wordBankBuildResult, expected);
 	}
 	
 
 	@Test
-	public void testBuildPuzzle() throws IOException
+	public void testBuildPuzzle() 
 	{
-		
-		 Path path = Paths.get("src/resources", "testTest");
-         Reader reader = Files.newBufferedReader(
-             path, Charset.forName("UTF-8"));
-		WordSearchBuilder builder = new WordSearchBuilder(reader);
 		List<List<String>> expected = new ArrayList<List<String>>();
 		expected.add(Arrays.asList("A","B","C","D"));
 		expected.add(Arrays.asList("E","F","G","H")); 
@@ -53,4 +54,9 @@ public class WordsearchTest {
 		assertEquals(wordBankBuildResult, expected);
 	}
 
+	@Test
+	public void  testBuildLtoRLinesFromPuzzleMatrix()
+	{
+		
+	}
 }
