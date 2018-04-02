@@ -7,6 +7,7 @@ import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -18,12 +19,19 @@ import java.util.stream.Stream;
 public class WordSearchBuilder {
 
 	List<String> wordBank;
-	Character[][] charMatrix;
+	List<List<String>> puzzleMatrix;
 	private Reader source;
 	
 	public WordSearchBuilder(Reader source) {
         this.source = source;
-        wordBank = readHeader();
+        try {
+        	wordBank = new ArrayList<String>();
+        	puzzleMatrix = new ArrayList<List<String>>();
+			readPuzzleFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       
     }
 	
@@ -32,20 +40,24 @@ public class WordSearchBuilder {
 	}
 	
 	
-    public Character[][] getCharMatrix() {
-		return charMatrix;
+    public List<List<String>> getPuzzleMatrix() {
+		return puzzleMatrix;
 	}
 
-	List<String> readHeader() {
+	void readPuzzleFile() throws IOException {
       BufferedReader reader = new BufferedReader(source);
-      return reader.lines()
-                    .findFirst()
-                    .map(mapper)
-                    .get();
-       
+      wordBank = Arrays.asList(reader.readLine().split(",")); 
+      reader.lines().forEach(line -> buildPuzzle(line));
+                  
     }
     
- 
+  
     
-    Function<String, List<String>> mapper  = line -> Arrays.asList(line.split(" "));
+    private void buildPuzzle(String line) {
+    	puzzleMatrix.add(new ArrayList<String>(Arrays.asList(line.split(","))));
+	}
+
+
+
+
 }
