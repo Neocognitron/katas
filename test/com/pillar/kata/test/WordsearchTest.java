@@ -209,4 +209,29 @@ public class WordsearchTest {
 		
 		assertEquals(newExpected, test.get("EEO"));
 	}
+	
+	@Test
+	public void testUpperDiagonalLtoRBackwardMatch()
+	{
+		
+		solver.DiagonalLeftToRightMatchBackward("FOG");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(4, 3)");
+		expected.add("(3, 2)");
+		expected.add("(2, 1)");
+		assertEquals(expected, test.get("FOG"));
+	}
+	@Test
+	public void testLowerDiagonalLtoRBackwardMatch()
+	{
+		
+		solver.DiagonalLeftToRightMatchBackward("UEW");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(3, 2)");
+		expected.add("(2, 1)");
+		expected.add("(1, 0)");
+		assertEquals(expected, test.get("UEW"));
+	}
 }

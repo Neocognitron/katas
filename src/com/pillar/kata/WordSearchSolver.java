@@ -43,18 +43,16 @@ public class WordSearchSolver {
 		for(int r=0; r<puzzleMatrix.size(); r++)
 		{
 			line = LeftToRightBuilder(r);
-			for(int c=0; c<=puzzleMatrix.get(r).size()-string.length(); c++)
+			if(line.contains(string))
 			{
-				if(line.substring(c, c+string.length()).equalsIgnoreCase(string))
-				{
+				int j = line.indexOf(string);
 					
-					List<Ordinal> ords = new ArrayList<Ordinal>();
-					for(int i=c; i<c+string.length(); i++)
-					{
-						ords.add(new Ordinal(i,r));
-					}
-					 resultMap.put(string, ords);
+				List<Ordinal> ords = new ArrayList<Ordinal>();
+				for(int i=j; i<j+string.length(); i++)
+				{
+					ords.add(new Ordinal(i,r));
 				}
+				 resultMap.put(string, ords);
 			}
 		}
 		
@@ -76,18 +74,16 @@ public class WordSearchSolver {
 		for(int r=0; r<puzzleMatrix.size(); r++)
 		{
 			line = LeftToRightBuilder(r);
-			for(int c=0; c<=puzzleMatrix.get(r).size()-revString.length(); c++)
+			if(line.contains(revString))
 			{
-				if(line.substring(c, c+revString.length()).equalsIgnoreCase(revString))
-				{
+				int j = line.indexOf(revString);
 					
-					List<Ordinal> ords = new ArrayList<Ordinal>();
-					for(int i=c+string.length()-1; i>=c; i--)
-					{
-						ords.add(new Ordinal(i,r));
-					}
-					 resultMap.put(string, ords);
+				List<Ordinal> ords = new ArrayList<Ordinal>();
+				for(int i=j+revString.length()-1; i>=j; i--)
+				{
+					ords.add(new Ordinal(i,r));
 				}
+				 resultMap.put(string, ords);
 			}
 		}
 		
@@ -99,21 +95,19 @@ public class WordSearchSolver {
 		for(int c=0; c<puzzleMatrix.get(0).size();c++)
 		{
 			line = TopToBottomBuilder(c);
-			for(int j=0; j<=puzzleMatrix.size()-string.length(); j++)
+			if(line.contains(string))
 			{
-				if(line.substring(j, j+string.length()).equalsIgnoreCase(string))
+				int j = line.indexOf(string);
+				
+				List<Ordinal> ords = new ArrayList<Ordinal>();
+				for(int i=j; i<j+string.length(); i++)
 				{
-					
-					List<Ordinal> ords = new ArrayList<Ordinal>();
-					for(int i=j; i<j+string.length(); i++)
-					{
-						ords.add(new Ordinal(c,i));
-					}
-					 resultMap.put(string, ords);
+					ords.add(new Ordinal(c,i));
 				}
+				 resultMap.put(string, ords);
 			}
-			
 		}
+			
 	}
 	
 	private String TopToBottomBuilder(int col) {
@@ -133,10 +127,8 @@ public class WordSearchSolver {
 		for(int c=0; c<puzzleMatrix.get(0).size();c++)
 		{
 			line = TopToBottomBuilder(c);
-			for(int j=0; j<=puzzleMatrix.size()-revString.length(); j++)
-			{
-				if(line.substring(j, j+revString.length()).equalsIgnoreCase(revString))
-				{
+			if(line.contains(revString)) {
+				int j = line.indexOf(revString);
 					
 					List<Ordinal> ords = new ArrayList<Ordinal>();
 					for(int i=j+revString.length()-1; i>=j; i--)
@@ -144,7 +136,6 @@ public class WordSearchSolver {
 						ords.add(new Ordinal(c,i));
 					}
 					 resultMap.put(string, ords);
-				}
 			}
 			
 		}
@@ -152,9 +143,6 @@ public class WordSearchSolver {
 	}
 	
 	public void DiagonalLeftToRightMatchForward(String string) {
-		//if the length of the word we want is longer than the difference between
-		//the start of the diagonal (on the matrix) and the end of that line,
-		//it won't be found.
 		String line=new String();
 		boolean matched = false;
 			for(int m=0;m<puzzleMatrix.size();m++)
@@ -163,17 +151,15 @@ public class WordSearchSolver {
 				if(puzzleMatrix.size()- m>=string.length() && !matched)
 				{
 					line = DiagonalLeftToRightLower(m);
-					System.out.println("Test="+line);
+					
 				}
 				else line = "";
 				
 				if(!line.equals(""))
 				{
-					for(int j=0; j<=puzzleMatrix.size()-string.length(); j++)
+					if(line.contains(string))
 					{
-						//System.out.println("Test="+line);
-						if(line.substring(j).equalsIgnoreCase(string))
-						{
+						int j = line.indexOf(string);
 							
 							List<Ordinal> ords = new ArrayList<Ordinal>();
 							for(int i=j+m; i<j+m+string.length(); i++)
@@ -183,7 +169,6 @@ public class WordSearchSolver {
 							}
 							 resultMap.put(string, ords);
 							 matched = true;
-						}
 					}
 				}
 			}
@@ -195,17 +180,13 @@ public class WordSearchSolver {
 					if(puzzleMatrix.size()- m>=string.length()&& !matched)
 					{
 						line = DiagonalLeftToRightUpper(m);
-						System.out.println("Test="+line);
 					}
 					else line = "";
 					
 					if(!line.equals(""))
 					{
-						for(int j=0; j<=string.length(); j++)
-						{
-							System.out.println("Test="+line);
-							if(line.substring(j).equalsIgnoreCase(string))
-							{
+						if(line.contains(string)) {
+							int j = line.indexOf(string);
 								
 								List<Ordinal> newOrds = new ArrayList<Ordinal>();
 								
@@ -217,7 +198,6 @@ public class WordSearchSolver {
 								}
 								matched=true;
 								resultMap.put(string, newOrds);
-							}
 						}
 					}
 				}
@@ -248,7 +228,69 @@ public class WordSearchSolver {
 			return line;
 		}
 	
-	
+		public void DiagonalLeftToRightMatchBackward(String string) {
+
+			String revString = new StringBuilder(string).reverse().toString();
+			String line=new String();
+			boolean matched = false;
+				for(int m=0;m<puzzleMatrix.size();m++)
+			{
+				
+					if(puzzleMatrix.size()- m>=revString.length() && !matched)
+					{
+						line = DiagonalLeftToRightLower(m);
+					}
+					else line = "";
+					
+					if(!line.equals(""))
+					{
+						
+						if(line.contains(revString)) {
+							int j = line.indexOf(revString);
+		
+							List<Ordinal> ords = new ArrayList<Ordinal>();
+							for(int i=j+m+revString.length()-1; i>=j+m; i--)
+							{
+								
+								ords.add(new Ordinal(i,i-m));
+							}
+							 resultMap.put(string, ords);
+							 matched = true;
+					}
+				}
+			}
+			if(!matched)
+			{
+				for(int m=0;m<puzzleMatrix.size();m++)
+				{
+				
+					if(puzzleMatrix.size()- m>=revString.length()&& !matched)
+					{
+						line = DiagonalLeftToRightUpper(m);
+					}
+					else line = "";
+					
+					if(!line.equals(""))
+					{
+						if(line.contains(revString)) 
+						{
+							int j = line.indexOf(revString);
+								
+							List<Ordinal> newOrds = new ArrayList<Ordinal>();
+							
+							for(int i=j+m+string.length()-1; i>=j+m; i--)
+							{
+								
+								newOrds.add(new Ordinal(i,i-m));
+							}
+							matched=true;
+							resultMap.put(string, newOrds);
+						}
+					}
+				}
+			}
+		}
+		
 	private class Ordinal {
 	    public Integer row;
 	    public Integer column;
@@ -269,13 +311,5 @@ public class WordSearchSolver {
 	    	return "("+row.toString()+", "+column.toString()+")";
 	    }
 	}
-
-
-
-
-	
-
-
-
 	
 }
