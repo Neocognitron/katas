@@ -122,6 +122,33 @@ public class WordSearchSolver {
 		return line;
 	}
 	
+
+	public void BottomToTopMatch(String string) {
+		String line = new String();
+		String revString = new StringBuilder(string).reverse().toString();
+		for(int c=0; c<puzzleMatrix.get(0).size();c++)
+		{
+			line = TopToBottomBuilder(c);
+			for(int j=0; j<=puzzleMatrix.size()-revString.length(); j++)
+			{
+				if(line.substring(j, j+revString.length()).equalsIgnoreCase(revString))
+				{
+					
+					List<Ordinal> ords = new ArrayList<Ordinal>();
+					for(int i=j+revString.length()-1; i>=j; i--)
+					{
+						ords.add(new Ordinal(c,i));
+					}
+					 resultMap.put(string, ords);
+				}
+			}
+			
+		}
+		
+	}
+	
+	
+	
 	
 	private class Ordinal {
 	    public Integer row;
@@ -143,6 +170,8 @@ public class WordSearchSolver {
 	    	return "("+row.toString()+", "+column.toString()+")";
 	    }
 	}
+
+
 
 	
 }

@@ -144,4 +144,32 @@ public class WordsearchTest {
 		
 		assertEquals(expected, test.get("GRU"));
 	}
+	
+	@Test
+	public void testBottomToTopBuild()
+	{
+		solver.BottomToTopMatch("RFOUE");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(4, 4)");
+		expected.add("(4, 3)");
+		expected.add("(4, 2)");
+		expected.add("(4, 1)");
+		expected.add("(4, 0)");
+		
+		assertEquals(expected, test.get("RFOUE"));
+	}
+	
+	@Test
+	public void testBottomToTopMatch()
+	{
+		solver.BottomToTopMatch("TWO");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(0, 2)");
+		expected.add("(0, 1)");
+		expected.add("(0, 0)");
+		
+		assertEquals(expected, test.get("TWO"));
+	}
 }
