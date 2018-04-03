@@ -41,11 +41,11 @@ public class WordSearchSolver {
 			line = LeftToRightBuilder(r);
 			for(int c=0; c<=puzzleMatrix.get(r).size()-string.length(); c++)
 			{
-				if(line.substring(c, string.length()).equalsIgnoreCase(string))
+				if(line.substring(c, c+string.length()).equalsIgnoreCase(string))
 				{
 					
 					List<Ordinal> ords = new ArrayList<Ordinal>();
-					for(int i=c; i<string.length(); i++)
+					for(int i=c; i<c+string.length(); i++)
 					{
 						ords.add(new Ordinal(r,i));
 					}

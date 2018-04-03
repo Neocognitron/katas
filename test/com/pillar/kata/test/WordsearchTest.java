@@ -73,7 +73,20 @@ public class WordsearchTest {
 		expected.add("(0, 3)");
 		expected.add("(0, 4)");
 		
-		assertEquals(expected, test.get("ONETE"));
+		assertEquals(expected, test.get("ONETE"));	
+	}
+	
+	@Test
+	public void testSolverLtoRFind()
+	{
+		solver.LeftToRightMatch("FOUR");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(4, 1)");
+		expected.add("(4, 2)");
+		expected.add("(4, 3)");
+		expected.add("(4, 4)");
 		
+		assertEquals(expected, test.get("FOUR"));
 	}
 }
