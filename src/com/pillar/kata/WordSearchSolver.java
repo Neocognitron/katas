@@ -3,6 +3,7 @@ package com.pillar.kata;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -311,6 +312,86 @@ public class WordSearchSolver {
 		}
 	}
 	
+	public void DiagonalBottomUpMatchBackward(String string) {
+		boolean matched = false;
+		
+		for(int m=0;m<puzzleMatrix.size();m++)
+		{
+				if(puzzleMatrix.size()- m>=string.length() && !matched)
+				{
+					matched=DiagonalBottomUpLowerBackwardBuilder(m, string);
+				}
+				
+		}
+		if(!matched)
+		{
+			for(int m=puzzleMatrix.size()-1; m>0; m--)
+			{
+				matched=DiagonalBottomUpUpperBackwardBuilder(m, string);
+					
+			}
+		}
+	}
+	
+	private boolean DiagonalBottomUpUpperBackwardBuilder(int m, String string) {
+		String line = new String();
+		String revString = new StringBuilder(string).reverse().toString();
+		List<Ordinal> ords = new ArrayList<Ordinal>();
+		
+		boolean start=false;
+		for(int i=0; i<puzzleMatrix.size(); i++)
+		{
+			if(m>-1) {
+				
+				if(revString.startsWith(puzzleMatrix.get(m).get(i)))
+					start=true;
+				if(start) {
+					line += puzzleMatrix.get(m).get(i);
+					ords.add(new Ordinal(i,m));
+					if(line.equals(revString)) 
+					{
+						Collections.reverse(ords);//Hah! This amuses me greatly, for some reason.
+						resultMap.put(string, ords);
+						return true;
+					}
+				}
+				m--;
+			}
+		}
+		
+		return false;
+	}
+
+
+	private boolean DiagonalBottomUpLowerBackwardBuilder(int m, String string) {
+		String line = new String();
+		String revString = new StringBuilder(string).reverse().toString();
+		List<Ordinal> ords = new ArrayList<Ordinal>();
+		boolean start=false;
+		for(int i=puzzleMatrix.size()-1; i>-1; i--)
+		{
+			if(m<puzzleMatrix.size()) {
+				
+				if(revString.startsWith(puzzleMatrix.get(i).get(m)))
+					start=true;
+				if(start) {
+					line += puzzleMatrix.get(i).get(m);
+					ords.add(new Ordinal(m,i));
+					if(line.equals(revString)) 
+					{
+						Collections.reverse(ords); //Hah! This amuses me greatly, for some reason.
+						resultMap.put(string, ords);
+						return true;
+					}
+				}
+				m++;
+			}
+		}
+		return false;
+	}
+
+	
+
 	private boolean DiagonalBottomUpLowerBuilder(int m, String match)
 	{
 		String line = new String();
@@ -347,7 +428,7 @@ public class WordSearchSolver {
 		for(int i=0; i<puzzleMatrix.size(); i++)
 		{
 			if(m>-1) {
-				System.out.println("Found " +puzzleMatrix.get(m).get(i) +" i= "+i+" m= "+m);
+				
 				if(match.startsWith(puzzleMatrix.get(m).get(i)))
 					start=true;
 				if(start) {

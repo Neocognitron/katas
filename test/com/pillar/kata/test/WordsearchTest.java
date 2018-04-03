@@ -270,6 +270,18 @@ public class WordsearchTest {
 		assertEquals(expected, test.get("FEG"));
 	}
 	
-	
+	@Test
+	public void testBottomToTopDiagonalRtoLReadOrderMatch()
+	{
+		solver.DiagonalBottomUpMatchBackward("EERHT");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(4, 0)");
+		expected.add("(3, 1)");
+		expected.add("(2, 2)");
+		expected.add("(1, 3)");
+		expected.add("(0, 4)");
+		assertEquals(expected, test.get("EERHT"));
+	}
 
 }
