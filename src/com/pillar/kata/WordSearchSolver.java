@@ -291,6 +291,82 @@ public class WordSearchSolver {
 			}
 		}
 		
+	public void DiagonalBottomUpMatchForward(String string) {
+		boolean matched = false;
+		for(int m=0;m<puzzleMatrix.size();m++)
+		{
+				if(puzzleMatrix.size()- m>=string.length() && !matched)
+				{
+					matched=DiagonalBottomUpLowerBuilder(m, string);
+				}
+				
+		}
+		if(!matched)
+		{
+			for(int m=puzzleMatrix.size()-1; m>0; m--)
+			{
+				matched=DiagonalBottomUpUpperBuilder(m, string);
+					
+			}
+		}
+	}
+	
+	private boolean DiagonalBottomUpLowerBuilder(int m, String match)
+	{
+		String line = new String();
+		List<Ordinal> ords = new ArrayList<Ordinal>();
+		boolean start=false;
+		for(int i=puzzleMatrix.size()-1; i>-1; i--)
+		{
+			if(m<puzzleMatrix.size()) {
+				
+				if(match.startsWith(puzzleMatrix.get(i).get(m)))
+					start=true;
+				if(start) {
+					line += puzzleMatrix.get(i).get(m);
+					ords.add(new Ordinal(m,i));
+					if(line.equals(match)) 
+					{
+						resultMap.put(match, ords);
+						return true;
+					}
+				}
+				m++;
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean DiagonalBottomUpUpperBuilder(int m, String match)
+	{
+		String line = new String();
+		List<Ordinal> ords = new ArrayList<Ordinal>();
+		
+		boolean start=false;
+		for(int i=0; i<puzzleMatrix.size(); i++)
+		{
+			if(m>-1) {
+				System.out.println("Found " +puzzleMatrix.get(m).get(i) +" i= "+i+" m= "+m);
+				if(match.startsWith(puzzleMatrix.get(m).get(i)))
+					start=true;
+				if(start) {
+					line += puzzleMatrix.get(m).get(i);
+					ords.add(new Ordinal(i,m));
+					if(line.equals(match)) 
+					{
+						
+						resultMap.put(match, ords);
+						return true;
+					}
+				}
+				m--;
+			}
+		}
+		
+		return false;
+	}
+	
 	private class Ordinal {
 	    public Integer row;
 	    public Integer column;
@@ -311,5 +387,7 @@ public class WordSearchSolver {
 	    	return "("+row.toString()+", "+column.toString()+")";
 	    }
 	}
+
+	
 	
 }

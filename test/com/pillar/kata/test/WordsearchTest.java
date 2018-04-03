@@ -234,4 +234,41 @@ public class WordsearchTest {
 		expected.add("(1, 0)");
 		assertEquals(expected, test.get("UEW"));
 	}
+	
+	@Test
+	public void testLowerBottomtoTopDiagonalLtoRReadOrderMatch()
+	{
+		//Finds full row
+		solver.DiagonalBottomUpMatchForward("THREE");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(0, 4)");
+		expected.add("(1, 3)");
+		expected.add("(2, 2)");
+		expected.add("(3, 1)");
+		expected.add("(4, 0)");
+		assertEquals(expected, test.get("THREE"));
+		
+		//finds diagonal in right half of matrix
+		solver.DiagonalBottomUpMatchForward("ORO");
+		test = solver.getResultMap();
+		expected = new ArrayList<String>();
+		expected.add("(2, 4)");
+		expected.add("(3, 3)");
+		expected.add("(4, 2)");
+		
+		assertEquals(expected, test.get("ORO"));
+		
+		//finds diagonal in left half of diagonal
+		solver.DiagonalBottomUpMatchForward("FEG");
+		test = solver.getResultMap();
+		expected = new ArrayList<String>();
+		expected.add("(0, 3)");
+		expected.add("(1, 2)");
+		expected.add("(2, 1)");
+		
+		assertEquals(expected, test.get("FEG"));
+	}
+	
+
 }
