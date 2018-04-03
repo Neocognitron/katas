@@ -14,20 +14,7 @@ public class WordSearchSolver {
 	List<List<String>> puzzleMatrix;
 	Map<String, List<Ordinal>> resultMap;
 	
-	public Map<String, List<String>> getResultMap() {
-		Map<String, List<String>> friendlyMap = new HashMap<String, List<String>>();
-		
-		for(String key : resultMap.keySet())
-		{
-			List<String> friendlyList = new ArrayList<String>();
-			for(Ordinal ords : resultMap.get(key))
-			{
-				friendlyList.add(ords.toString());
-			}
-			friendlyMap.put(key, friendlyList);
-		}
-		return friendlyMap;
-	}
+	
 
 
 	public WordSearchSolver(List<String> wordBank, List<List<String>> puzzleMatrix)
@@ -35,6 +22,26 @@ public class WordSearchSolver {
 		this.wordBank = wordBank;
 		this.puzzleMatrix =puzzleMatrix;
 		resultMap = new HashMap<String, List<Ordinal>>();
+	}
+
+	
+	public void solve() {
+		
+		if(!wordBank.isEmpty())
+		{
+			for(String word : wordBank)
+			{
+				LeftToRightMatch(word);
+				if(!resultMap.containsKey(word)) RightToLeftMatch(word);
+				if(!resultMap.containsKey(word)) TopToBottomMatch(word);
+				if(!resultMap.containsKey(word)) BottomToTopMatch(word);
+				if(!resultMap.containsKey(word)) DiagonalLeftToRightMatchForward(word);
+				if(!resultMap.containsKey(word)) DiagonalLeftToRightMatchBackward(word);
+				if(!resultMap.containsKey(word)) DiagonalBottomUpMatchBackward(word);
+				if(!resultMap.containsKey(word)) DiagonalBottomUpMatchForward(word); 
+				
+			}
+		}
 	}
 
 
@@ -448,6 +455,21 @@ public class WordSearchSolver {
 		return false;
 	}
 	
+	public Map<String, List<String>> getResultMap() {
+		Map<String, List<String>> friendlyMap = new HashMap<String, List<String>>();
+		
+		for(String key : resultMap.keySet())
+		{
+			List<String> friendlyList = new ArrayList<String>();
+			for(Ordinal ords : resultMap.get(key))
+			{
+				friendlyList.add(ords.toString());
+			}
+			friendlyMap.put(key, friendlyList);
+		}
+		return friendlyMap;
+	}
+	
 	private class Ordinal {
 	    public Integer row;
 	    public Integer column;
@@ -468,7 +490,5 @@ public class WordSearchSolver {
 	    	return "("+row.toString()+", "+column.toString()+")";
 	    }
 	}
-
-	
 	
 }

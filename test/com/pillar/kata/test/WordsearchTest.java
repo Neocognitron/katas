@@ -283,5 +283,38 @@ public class WordsearchTest {
 		expected.add("(0, 4)");
 		assertEquals(expected, test.get("EERHT"));
 	}
+	
+	@Test
+	public void matchWordsFromBank()
+	{
+		solver.solve();
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(1, 4)");
+		expected.add("(2, 4)");
+		expected.add("(3, 4)");
+		expected.add("(4, 4)");
+		assertEquals(expected, test.get("FOUR"));
+		
+		expected = new ArrayList<String>();
+		expected.add("(0, 4)");
+		expected.add("(1, 3)");
+		expected.add("(2, 2)");
+		expected.add("(3, 1)");
+		expected.add("(4, 0)");
+		assertEquals(expected, test.get("THREE"));
+		
+		expected = new ArrayList<String>();
+		expected.add("(0, 2)");
+		expected.add("(0, 1)");
+		expected.add("(0, 0)");
+		assertEquals(expected, test.get("TWO"));
+		
+		expected = new ArrayList<String>();
+		expected.add("(0, 0)");
+		expected.add("(1, 0)");
+		expected.add("(2, 0)");	
+		assertEquals(expected, test.get("ONE"));
+	}
 
 }
