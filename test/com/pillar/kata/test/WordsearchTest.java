@@ -236,7 +236,7 @@ public class WordsearchTest {
 	}
 	
 	@Test
-	public void testLowerBottomtoTopDiagonalLtoRReadOrderMatch()
+	public void testBottomtoTopDiagonalLtoRReadOrderMatch()
 	{
 		//Finds full row
 		solver.DiagonalBottomUpMatchForward("THREE");
@@ -269,6 +269,7 @@ public class WordsearchTest {
 		
 		assertEquals(expected, test.get("FEG"));
 	}
+	
 	
 
 }
