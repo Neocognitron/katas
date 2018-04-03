@@ -97,13 +97,13 @@ public class WordSearchSolver {
 			line = TopToBottomBuilder(c);
 			for(int j=0; j<=puzzleMatrix.size()-string.length(); j++)
 			{
-				if(line.substring(j, j+string.length()).equalsIgnoreCase(line))
+				if(line.substring(j, j+string.length()).equalsIgnoreCase(string))
 				{
 					
 					List<Ordinal> ords = new ArrayList<Ordinal>();
 					for(int i=j; i<j+string.length(); i++)
 					{
-						ords.add(new Ordinal(j,i));
+						ords.add(new Ordinal(c,i));
 					}
 					 resultMap.put(string, ords);
 				}

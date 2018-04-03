@@ -130,4 +130,18 @@ public class WordsearchTest {
 		
 		assertEquals(expected, test.get("OWTFT"));
 	}
+	
+	@Test
+	public void testTopToBottomMatch()
+	{
+
+		solver.TopToBottomMatch("GRU");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(2, 1)");
+		expected.add("(2, 2)");
+		expected.add("(2, 3)");
+		
+		assertEquals(expected, test.get("GRU"));
+	}
 }
