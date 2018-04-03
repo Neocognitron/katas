@@ -11,16 +11,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.pillar.kata.WordSearchBuilder;
+import com.pillar.kata.WordSearchSolver;
 
 public class WordsearchTest {
 	
 	WordSearchBuilder builder;
+	WordSearchSolver solver;
 	@Before
 	public void setup() throws IOException
 	{
@@ -29,15 +33,16 @@ public class WordsearchTest {
         Reader reader = Files.newBufferedReader(
             path, Charset.forName("UTF-8"));
 		builder = new WordSearchBuilder(reader);
+		solver = new WordSearchSolver(builder.getWordBank(), builder.getPuzzleMatrix());
 	}
 
 	@Test
 	public void testBuildWordBankFromReader() 
 	{
 
-		List<String> expected = Arrays.asList("One", "Two", "Three");
+		List<String> expected = Arrays.asList("ONE", "TWO", "THREE","FOUR");
 		List<String> wordBankBuildResult = builder.getWordBank();
-		assertEquals(wordBankBuildResult, expected);
+		assertEquals(expected, wordBankBuildResult);
 	}
 	
 
@@ -45,18 +50,30 @@ public class WordsearchTest {
 	public void testBuildPuzzle() 
 	{
 		List<List<String>> expected = new ArrayList<List<String>>();
-		expected.add(Arrays.asList("A","B","C","D"));
-		expected.add(Arrays.asList("E","F","G","H")); 
-		expected.add(Arrays.asList("I","J","K","L"));
-		expected.add(Arrays.asList("M","N","O","P"));
+		expected.add(Arrays.asList("O","N","E","T","E"));
+		expected.add(Arrays.asList("W","F","G","E","U")); 
+		expected.add(Arrays.asList("T","E","R","O","O"));
+		expected.add(Arrays.asList("F","H","U","R","F"));
+		expected.add(Arrays.asList("T","F","O","U","R"));
+
 
 		List<List<String>> wordBankBuildResult = builder.getPuzzleMatrix();
-		assertEquals(wordBankBuildResult, expected);
+		assertEquals(expected, wordBankBuildResult);
 	}
 
 	@Test
-	public void  testBuildLtoRLinesFromPuzzleMatrix()
+	public void  testSolverLtoRStringBuild()
 	{
+		solver.LeftToRightMatch("ONETE");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(0, 0)");
+		expected.add("(0, 1)");
+		expected.add("(0, 2)");
+		expected.add("(0, 3)");
+		expected.add("(0, 4)");
+		
+		assertEquals(expected, test.get("ONETE"));
 		
 	}
 }
