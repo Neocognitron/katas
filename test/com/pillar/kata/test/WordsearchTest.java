@@ -68,10 +68,10 @@ public class WordsearchTest {
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
 		expected.add("(0, 0)");
-		expected.add("(0, 1)");
-		expected.add("(0, 2)");
-		expected.add("(0, 3)");
-		expected.add("(0, 4)");
+		expected.add("(1, 0)");
+		expected.add("(2, 0)");
+		expected.add("(3, 0)");
+		expected.add("(4, 0)");
 		
 		assertEquals(expected, test.get("ONETE"));	
 	}
@@ -82,9 +82,9 @@ public class WordsearchTest {
 		solver.LeftToRightMatch("FOUR");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(4, 1)");
-		expected.add("(4, 2)");
-		expected.add("(4, 3)");
+		expected.add("(1, 4)");
+		expected.add("(2, 4)");
+		expected.add("(3, 4)");
 		expected.add("(4, 4)");
 		
 		assertEquals(expected, test.get("FOUR"));
@@ -95,12 +95,39 @@ public class WordsearchTest {
 		solver.RightToLeftMatch("ETENO");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 4)");
-		expected.add("(0, 3)");
-		expected.add("(0, 2)");
-		expected.add("(0, 1)");
+		expected.add("(4, 0)");
+		expected.add("(3, 0)");
+		expected.add("(2, 0)");
+		expected.add("(1, 0)");
 		expected.add("(0, 0)");
 		
 		assertEquals(expected, test.get("ETENO"));
+	}
+	
+	@Test
+	public void testSolverRtoLFind() {
+		solver.RightToLeftMatch("TEN");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(3, 0)");
+		expected.add("(2, 0)");
+		expected.add("(1, 0)");
+		
+		assertEquals(expected, test.get("TEN"));
+	}
+	
+	@Test
+	public void testTopToBottomBuild() {
+		
+		solver.TopToBottomMatch("OWTFT");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(0, 0)");
+		expected.add("(0, 1)");
+		expected.add("(0, 2)");
+		expected.add("(0, 3)");
+		expected.add("(0, 4)");
+		
+		assertEquals(expected, test.get("OWTFT"));
 	}
 }

@@ -47,7 +47,7 @@ public class WordSearchSolver {
 					List<Ordinal> ords = new ArrayList<Ordinal>();
 					for(int i=c; i<c+string.length(); i++)
 					{
-						ords.add(new Ordinal(r,i));
+						ords.add(new Ordinal(i,r));
 					}
 					 resultMap.put(string, ords);
 				}
@@ -78,9 +78,9 @@ public class WordSearchSolver {
 				{
 					
 					List<Ordinal> ords = new ArrayList<Ordinal>();
-					for(int i=c+string.length(); i>=c; i++)
+					for(int i=c+string.length()-1; i>=c; i--)
 					{
-						ords.add(new Ordinal(r,i));
+						ords.add(new Ordinal(i,r));
 					}
 					 resultMap.put(string, ords);
 				}
@@ -89,6 +89,38 @@ public class WordSearchSolver {
 		
 	}
 	
+	public void TopToBottomMatch(String string)
+	{
+		String line = new String();
+		for(int c=0; c<puzzleMatrix.get(0).size();c++)
+		{
+			line = TopToBottomBuilder(c);
+			for(int j=0; j<=puzzleMatrix.size()-string.length(); j++)
+			{
+				if(line.substring(j, j+string.length()).equalsIgnoreCase(line))
+				{
+					
+					List<Ordinal> ords = new ArrayList<Ordinal>();
+					for(int i=j; i<j+string.length(); i++)
+					{
+						ords.add(new Ordinal(j,i));
+					}
+					 resultMap.put(string, ords);
+				}
+			}
+			
+		}
+	}
+	
+	private String TopToBottomBuilder(int col) {
+		String line = new String();
+		
+		for(int i=0; i<puzzleMatrix.size(); i++)
+		{
+			line += puzzleMatrix.get(i).get(col);
+		}
+		return line;
+	}
 	
 	
 	private class Ordinal {
