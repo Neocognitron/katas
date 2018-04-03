@@ -172,4 +172,41 @@ public class WordsearchTest {
 		
 		assertEquals(expected, test.get("TWO"));
 	}
+	
+	@Test
+	public void testDiagonalLtoRBuilder()
+	{
+		solver.DiagonalLeftToRightMatchForward("OFRRR");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(0, 0)");
+		expected.add("(1, 1)");
+		expected.add("(2, 2)");
+		expected.add("(3, 3)");
+		expected.add("(4, 4)");
+		
+		assertEquals(expected, test.get("OFRRR"));
+	}
+	
+	@Test
+	public void testDiagonalLtoRMatch()
+	{
+		solver.DiagonalLeftToRightMatchForward("THO");
+		Map<String, List<String>> test = solver.getResultMap();
+		List<String> expected = new ArrayList<String>();
+		expected.add("(0, 2)");
+		expected.add("(1, 3)");
+		expected.add("(2, 4)");
+		
+		assertEquals(expected, test.get("THO"));
+	
+		solver.DiagonalLeftToRightMatchForward("EEO");
+		test = solver.getResultMap();
+		List<String> newExpected = new ArrayList<String>();
+		newExpected.add("(2, 0)");
+		newExpected.add("(3, 1)");
+		newExpected.add("(4, 2)");
+		
+		assertEquals(newExpected, test.get("EEO"));
+	}
 }

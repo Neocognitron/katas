@@ -15,11 +15,15 @@ public class WordSearchSolver {
 	
 	public Map<String, List<String>> getResultMap() {
 		Map<String, List<String>> friendlyMap = new HashMap<String, List<String>>();
-		List<String> friendlyList = new ArrayList<String>();
-		for(Map.Entry<String, List<Ordinal>> ords : resultMap.entrySet())
+		
+		for(String key : resultMap.keySet())
 		{
-			ords.getValue().forEach(v-> friendlyList.add(v.toString()));
-			friendlyMap.put(ords.getKey(), friendlyList);
+			List<String> friendlyList = new ArrayList<String>();
+			for(Ordinal ords : resultMap.get(key))
+			{
+				friendlyList.add(ords.toString());
+			}
+			friendlyMap.put(key, friendlyList);
 		}
 		return friendlyMap;
 	}
@@ -147,7 +151,102 @@ public class WordSearchSolver {
 		
 	}
 	
+	public void DiagonalLeftToRightMatchForward(String string) {
+		//if the length of the word we want is longer than the difference between
+		//the start of the diagonal (on the matrix) and the end of that line,
+		//it won't be found.
+		String line=new String();
+		boolean matched = false;
+			for(int m=0;m<puzzleMatrix.size();m++)
+		{
+			
+				if(puzzleMatrix.size()- m>=string.length() && !matched)
+				{
+					line = DiagonalLeftToRightLower(m);
+					System.out.println("Test="+line);
+				}
+				else line = "";
+				
+				if(!line.equals(""))
+				{
+					for(int j=0; j<=puzzleMatrix.size()-string.length(); j++)
+					{
+						//System.out.println("Test="+line);
+						if(line.substring(j).equalsIgnoreCase(string))
+						{
+							
+							List<Ordinal> ords = new ArrayList<Ordinal>();
+							for(int i=j+m; i<j+m+string.length(); i++)
+							{
+								
+								ords.add(new Ordinal(i-m,i));
+							}
+							 resultMap.put(string, ords);
+							 matched = true;
+						}
+					}
+				}
+			}
+		if(!matched)
+		{
+			for(int m=0;m<puzzleMatrix.size();m++)
+			{
+				
+					if(puzzleMatrix.size()- m>=string.length()&& !matched)
+					{
+						line = DiagonalLeftToRightUpper(m);
+						System.out.println("Test="+line);
+					}
+					else line = "";
+					
+					if(!line.equals(""))
+					{
+						for(int j=0; j<=string.length(); j++)
+						{
+							System.out.println("Test="+line);
+							if(line.substring(j).equalsIgnoreCase(string))
+							{
+								
+								List<Ordinal> newOrds = new ArrayList<Ordinal>();
+								
+								for(int i=j+m; i<j+m+string.length(); i++)
+								{
+									
+									System.out.println("Test="+i);
+									newOrds.add(new Ordinal(i,i-m));
+								}
+								matched=true;
+								resultMap.put(string, newOrds);
+							}
+						}
+					}
+				}
+			}
+	}
 	
+	
+	private String DiagonalLeftToRightLower(int r)
+	{
+		String line = new String();
+		for(int i=0; i<puzzleMatrix.size(); i++)
+		{
+			if(r<puzzleMatrix.size())
+				line += puzzleMatrix.get(r++).get(i);
+		}
+		return line;
+	}
+	
+	
+		private String DiagonalLeftToRightUpper(int r)
+		{
+			String line = new String();
+			for(int i=0; i<puzzleMatrix.size(); i++)
+			{
+				if(r<puzzleMatrix.size())
+					line += puzzleMatrix.get(i).get(r++);
+			}
+			return line;
+		}
 	
 	
 	private class Ordinal {
@@ -170,6 +269,11 @@ public class WordSearchSolver {
 	    	return "("+row.toString()+", "+column.toString()+")";
 	    }
 	}
+
+
+
+
+	
 
 
 
