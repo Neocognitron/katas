@@ -56,7 +56,6 @@ public class WordSearchSolver {
 		
 	}
 	
-	
 	private String LeftToRightBuilder(int row)
 	{
 		String line = new String();
@@ -66,6 +65,31 @@ public class WordSearchSolver {
 		}
 		return line;
 	}
+	
+	public void RightToLeftMatch(String string) {
+		String line = new String();
+		String revString = new StringBuilder(string).reverse().toString();
+		for(int r=0; r<puzzleMatrix.size(); r++)
+		{
+			line = LeftToRightBuilder(r);
+			for(int c=0; c<=puzzleMatrix.get(r).size()-revString.length(); c++)
+			{
+				if(line.substring(c, c+revString.length()).equalsIgnoreCase(revString))
+				{
+					
+					List<Ordinal> ords = new ArrayList<Ordinal>();
+					for(int i=c+string.length(); i>=c; i++)
+					{
+						ords.add(new Ordinal(r,i));
+					}
+					 resultMap.put(string, ords);
+				}
+			}
+		}
+		
+	}
+	
+	
 	
 	private class Ordinal {
 	    public Integer row;
@@ -87,4 +111,6 @@ public class WordSearchSolver {
 	    	return "("+row.toString()+", "+column.toString()+")";
 	    }
 	}
+
+	
 }
