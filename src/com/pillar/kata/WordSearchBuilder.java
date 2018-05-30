@@ -57,12 +57,6 @@ public class WordSearchBuilder {
     	puzzleMatrix.add(new ArrayList<String>(Arrays.asList(line.split(","))));
 	}
 
-	public boolean find(String word) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 
 
 }

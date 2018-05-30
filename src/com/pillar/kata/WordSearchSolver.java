@@ -201,7 +201,6 @@ public class WordSearchSolver {
 								for(int i=j+m; i<j+m+string.length(); i++)
 								{
 									
-									System.out.println("Test="+i);
 									newOrds.add(new Ordinal(i,i-m));
 								}
 								matched=true;
@@ -487,7 +486,7 @@ public class WordSearchSolver {
 	    
 	    public String toString()
 	    {
-	    	return "("+row.toString()+", "+column.toString()+")";
+	    	return "("+row.toString()+","+column.toString()+")";
 	    }
 	}
 	

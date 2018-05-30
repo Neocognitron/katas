@@ -67,11 +67,11 @@ public class WordsearchTest {
 		solver.LeftToRightMatch("ONETE");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 0)");
-		expected.add("(1, 0)");
-		expected.add("(2, 0)");
-		expected.add("(3, 0)");
-		expected.add("(4, 0)");
+		expected.add("(0,0)");
+		expected.add("(1,0)");
+		expected.add("(2,0)");
+		expected.add("(3,0)");
+		expected.add("(4,0)");
 		
 		assertEquals(expected, test.get("ONETE"));	
 	}
@@ -82,10 +82,10 @@ public class WordsearchTest {
 		solver.LeftToRightMatch("FOUR");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(1, 4)");
-		expected.add("(2, 4)");
-		expected.add("(3, 4)");
-		expected.add("(4, 4)");
+		expected.add("(1,4)");
+		expected.add("(2,4)");
+		expected.add("(3,4)");
+		expected.add("(4,4)");
 		
 		assertEquals(expected, test.get("FOUR"));
 	}
@@ -95,11 +95,11 @@ public class WordsearchTest {
 		solver.RightToLeftMatch("ETENO");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(4, 0)");
-		expected.add("(3, 0)");
-		expected.add("(2, 0)");
-		expected.add("(1, 0)");
-		expected.add("(0, 0)");
+		expected.add("(4,0)");
+		expected.add("(3,0)");
+		expected.add("(2,0)");
+		expected.add("(1,0)");
+		expected.add("(0,0)");
 		
 		assertEquals(expected, test.get("ETENO"));
 	}
@@ -109,9 +109,9 @@ public class WordsearchTest {
 		solver.RightToLeftMatch("TEN");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(3, 0)");
-		expected.add("(2, 0)");
-		expected.add("(1, 0)");
+		expected.add("(3,0)");
+		expected.add("(2,0)");
+		expected.add("(1,0)");
 		
 		assertEquals(expected, test.get("TEN"));
 	}
@@ -122,11 +122,11 @@ public class WordsearchTest {
 		solver.TopToBottomMatch("OWTFT");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 0)");
-		expected.add("(0, 1)");
-		expected.add("(0, 2)");
-		expected.add("(0, 3)");
-		expected.add("(0, 4)");
+		expected.add("(0,0)");
+		expected.add("(0,1)");
+		expected.add("(0,2)");
+		expected.add("(0,3)");
+		expected.add("(0,4)");
 		
 		assertEquals(expected, test.get("OWTFT"));
 	}
@@ -138,9 +138,9 @@ public class WordsearchTest {
 		solver.TopToBottomMatch("GRU");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(2, 1)");
-		expected.add("(2, 2)");
-		expected.add("(2, 3)");
+		expected.add("(2,1)");
+		expected.add("(2,2)");
+		expected.add("(2,3)");
 		
 		assertEquals(expected, test.get("GRU"));
 	}
@@ -151,11 +151,11 @@ public class WordsearchTest {
 		solver.BottomToTopMatch("RFOUE");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(4, 4)");
-		expected.add("(4, 3)");
-		expected.add("(4, 2)");
-		expected.add("(4, 1)");
-		expected.add("(4, 0)");
+		expected.add("(4,4)");
+		expected.add("(4,3)");
+		expected.add("(4,2)");
+		expected.add("(4,1)");
+		expected.add("(4,0)");
 		
 		assertEquals(expected, test.get("RFOUE"));
 	}
@@ -166,9 +166,9 @@ public class WordsearchTest {
 		solver.BottomToTopMatch("TWO");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 2)");
-		expected.add("(0, 1)");
-		expected.add("(0, 0)");
+		expected.add("(0,2)");
+		expected.add("(0,1)");
+		expected.add("(0,0)");
 		
 		assertEquals(expected, test.get("TWO"));
 	}
@@ -179,11 +179,11 @@ public class WordsearchTest {
 		solver.DiagonalLeftToRightMatchForward("OFRRR");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 0)");
-		expected.add("(1, 1)");
-		expected.add("(2, 2)");
-		expected.add("(3, 3)");
-		expected.add("(4, 4)");
+		expected.add("(0,0)");
+		expected.add("(1,1)");
+		expected.add("(2,2)");
+		expected.add("(3,3)");
+		expected.add("(4,4)");
 		
 		assertEquals(expected, test.get("OFRRR"));
 	}
@@ -194,18 +194,18 @@ public class WordsearchTest {
 		solver.DiagonalLeftToRightMatchForward("THO");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 2)");
-		expected.add("(1, 3)");
-		expected.add("(2, 4)");
+		expected.add("(0,2)");
+		expected.add("(1,3)");
+		expected.add("(2,4)");
 		
 		assertEquals(expected, test.get("THO"));
 	
 		solver.DiagonalLeftToRightMatchForward("EEO");
 		test = solver.getResultMap();
 		List<String> newExpected = new ArrayList<String>();
-		newExpected.add("(2, 0)");
-		newExpected.add("(3, 1)");
-		newExpected.add("(4, 2)");
+		newExpected.add("(2,0)");
+		newExpected.add("(3,1)");
+		newExpected.add("(4,2)");
 		
 		assertEquals(newExpected, test.get("EEO"));
 	}
@@ -217,9 +217,9 @@ public class WordsearchTest {
 		solver.DiagonalLeftToRightMatchBackward("FOG");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(4, 3)");
-		expected.add("(3, 2)");
-		expected.add("(2, 1)");
+		expected.add("(4,3)");
+		expected.add("(3,2)");
+		expected.add("(2,1)");
 		assertEquals(expected, test.get("FOG"));
 	}
 	@Test
@@ -229,9 +229,9 @@ public class WordsearchTest {
 		solver.DiagonalLeftToRightMatchBackward("UEW");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(3, 2)");
-		expected.add("(2, 1)");
-		expected.add("(1, 0)");
+		expected.add("(3,2)");
+		expected.add("(2,1)");
+		expected.add("(1,0)");
 		assertEquals(expected, test.get("UEW"));
 	}
 	
@@ -242,20 +242,20 @@ public class WordsearchTest {
 		solver.DiagonalBottomUpMatchForward("THREE");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(0, 4)");
-		expected.add("(1, 3)");
-		expected.add("(2, 2)");
-		expected.add("(3, 1)");
-		expected.add("(4, 0)");
+		expected.add("(0,4)");
+		expected.add("(1,3)");
+		expected.add("(2,2)");
+		expected.add("(3,1)");
+		expected.add("(4,0)");
 		assertEquals(expected, test.get("THREE"));
 		
 		//finds diagonal in right half of matrix
 		solver.DiagonalBottomUpMatchForward("ORO");
 		test = solver.getResultMap();
 		expected = new ArrayList<String>();
-		expected.add("(2, 4)");
-		expected.add("(3, 3)");
-		expected.add("(4, 2)");
+		expected.add("(2,4)");
+		expected.add("(3,3)");
+		expected.add("(4,2)");
 		
 		assertEquals(expected, test.get("ORO"));
 		
@@ -263,9 +263,9 @@ public class WordsearchTest {
 		solver.DiagonalBottomUpMatchForward("FEG");
 		test = solver.getResultMap();
 		expected = new ArrayList<String>();
-		expected.add("(0, 3)");
-		expected.add("(1, 2)");
-		expected.add("(2, 1)");
+		expected.add("(0,3)");
+		expected.add("(1,2)");
+		expected.add("(2,1)");
 		
 		assertEquals(expected, test.get("FEG"));
 	}
@@ -276,11 +276,11 @@ public class WordsearchTest {
 		solver.DiagonalBottomUpMatchBackward("EERHT");
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(4, 0)");
-		expected.add("(3, 1)");
-		expected.add("(2, 2)");
-		expected.add("(1, 3)");
-		expected.add("(0, 4)");
+		expected.add("(4,0)");
+		expected.add("(3,1)");
+		expected.add("(2,2)");
+		expected.add("(1,3)");
+		expected.add("(0,4)");
 		assertEquals(expected, test.get("EERHT"));
 	}
 	
@@ -290,30 +290,30 @@ public class WordsearchTest {
 		solver.solve();
 		Map<String, List<String>> test = solver.getResultMap();
 		List<String> expected = new ArrayList<String>();
-		expected.add("(1, 4)");
-		expected.add("(2, 4)");
-		expected.add("(3, 4)");
-		expected.add("(4, 4)");
+		expected.add("(1,4)");
+		expected.add("(2,4)");
+		expected.add("(3,4)");
+		expected.add("(4,4)");
 		assertEquals(expected, test.get("FOUR"));
 		
 		expected = new ArrayList<String>();
-		expected.add("(0, 4)");
-		expected.add("(1, 3)");
-		expected.add("(2, 2)");
-		expected.add("(3, 1)");
-		expected.add("(4, 0)");
+		expected.add("(0,4)");
+		expected.add("(1,3)");
+		expected.add("(2,2)");
+		expected.add("(3,1)");
+		expected.add("(4,0)");
 		assertEquals(expected, test.get("THREE"));
 		
 		expected = new ArrayList<String>();
-		expected.add("(0, 2)");
-		expected.add("(0, 1)");
-		expected.add("(0, 0)");
+		expected.add("(0,2)");
+		expected.add("(0,1)");
+		expected.add("(0,0)");
 		assertEquals(expected, test.get("TWO"));
 		
 		expected = new ArrayList<String>();
-		expected.add("(0, 0)");
-		expected.add("(1, 0)");
-		expected.add("(2, 0)");	
+		expected.add("(0,0)");
+		expected.add("(1,0)");
+		expected.add("(2,0)");	
 		assertEquals(expected, test.get("ONE"));
 	}
 
